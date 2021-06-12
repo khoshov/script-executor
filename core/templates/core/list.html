@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+{% if script_path %}
+  <p>Results of executing <i>{{ script_path }}</i></p>
+  {% for result in results %}
+    <p>{{ result }}</p>
+  {% endfor %}
+{% endif %}
+<form action="{% url 'core:list' %}">
+  <label for="scripts"></label>
+  <select name="scripts" id="scripts">
+    {% for script in scripts %}
+      <option value="{{ script }}">
+          {{ script }}
+      </option>
+    {% endfor %}
+  </select>
+  <button type="submit">Выполинть</button>
+</form>
+</body>
+</html>
