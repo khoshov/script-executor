@@ -2,6 +2,7 @@ import os
 
 from django.template.response import TemplateResponse
 
+from core.models import ExecutableFile
 from core.utils import get_executable_path, get_scripts_list
 
 
@@ -17,4 +18,11 @@ def main(request):
         'scripts': scripts,
         'script_path': script_path,
         'results': results,
+    })
+
+
+def executables(request):
+    executables_list = ExecutableFile.extended.all()
+    return TemplateResponse(request, 'core/executables.html', context={
+        'executables': executables_list,
     })
